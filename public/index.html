@@ -5,20 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>FoodFilter</title>
         <script src="index.js"></script>
-        <script src="Gemini.js"></script>
-
-        <script>
-            async function generateImage(prompt) {
-              const res = await fetch("/generate-image", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ prompt })
-              });
-          
-              const data = await res.json();
-              document.getElementById("output").src = `data:image/png;base64,${data.image}`;
-            }
-          </script>
     </head>
     <body>
         <div id="header">
@@ -29,8 +15,6 @@
             <h3 id="slogan">Recipes, no yap</h3>
             <input type="text" id="input" placeholder="Enter URL"></input>
             <button id="go-button">Go!</button>
-
-            <button type="button" onclick="generateImage('Candle')">Test Image.</button>
             <img id="output"/>
 
         </div>

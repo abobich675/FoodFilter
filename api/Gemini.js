@@ -1,30 +1,37 @@
-// // import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI } from "@google/genai";
 // const { GoogleGenAI } = require("@google/genai");
 
-// // import * as fs from "node:fs";
+import * as fs from "node:fs";
 // const fs = require('fs');
 
+apiKey = null;
 
-// async function generateImage(prompt) {
+main();
+function main() {
+  geminiKey = new GoogleGenAI({
+    apiKey: process.env.GEMINI_API_KEY, // Load from Vercel environment variable
+  });
+}
 
-//   const ai = new GoogleGenAI({ apiKey: "GEMINI_KEY" });
+async function generateImage(prompt) {
+  const ai = new GoogleGenAI({ apiKey: apiKey });
 
-//   const response = await ai.models.generateImages({
-//     model: 'imagen-3.0-generate-002',
-//     prompt: prompt,
-//     config: {
-//       numberOfImages: 1,
-//     },
-//   });
+  const response = await ai.models.generateImages({
+    model: 'imagen-3.0-generate-002',
+    prompt: prompt,
+    config: {
+      numberOfImages: 1,
+    },
+  });
 
-//   let idx = 1;
-//   for (const generatedImage of response.generatedImages) {
-//     let imgBytes = generatedImage.image.imageBytes;
-//     const buffer = Buffer.from(imgBytes, "base64");
-//     fs.writeFileSync(`imagen-${idx}.png`, buffer);
-//     idx++;
-//   }
-// }
+  let idx = 1;
+  for (const generatedImage of response.generatedImages) {
+    let imgBytes = generatedImage.image.imageBytes;
+    const buffer = Buffer.from(imgBytes, "base64");
+    fs.writeFileSync(`imagen-${idx}.png`, buffer);
+    idx++;
+  }
+}
 
 // async function generateJSON() {
 //   const response = await ai.models.generateContent({
@@ -34,34 +41,34 @@
 //   console.log(response.text);
 // }
 
-// function test() {
-//   console.log("TEST!!");
-// }
+function test() {
+  console.log("TEST!!");
+}
 
 
-const { GoogleGenAI } = require('@google/genai');
+// import { GoogleGenAI } from "@google/genai";
 
-const genAI = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY, // Load from Vercel environment variable
-});
+// const genAI = new GoogleGenAI({
+//   apiKey: process.env.GEMINI_API_KEY, // Load from Vercel environment variable
+// });
 
-module.exports = async (req, res) => {
-  if (req.method !== 'POST') return res.status(405).end();
+// module.exports = async (req, res) => {
+//   if (req.method !== 'POST') return res.status(405).end();
 
-  const { prompt } = req.body;
+//   const { prompt } = req.body;
 
-  try {
-    const result = await genAI.models.generateImages({
-      model: 'imagen-3.0-generate-002',
-      prompt,
-      config: { numberOfImages: 1 }
-    });
+//   try {
+//     const result = await genAI.models.generateImages({
+//       model: 'imagen-3.0-generate-002',
+//       prompt,
+//       config: { numberOfImages: 1 }
+//     });
 
-    const base64 = result.generatedImages?.[0]?.image?.imageBytes;
-    res.status(200).json({ image: base64 });
+//     const base64 = result.generatedImages?.[0]?.image?.imageBytes;
+//     res.status(200).json({ image: base64 });
 
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Image generation failed' });
-  }
-};
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ error: 'Image generation failed' });
+//   }
+// };
