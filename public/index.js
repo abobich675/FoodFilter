@@ -1,53 +1,53 @@
 import * as gemini from './api/Gemini.js';
 
-function handleModalAcceptClick() {
+// function handleModalAcceptClick() {
 
-  var quoteAuthor = document.getElementById('quote-author-input').value.trim();
-  var quoteText = document.getElementById('quote-text-input').value.trim();
+//   var quoteAuthor = document.getElementById('quote-author-input').value.trim();
+//   var quoteText = document.getElementById('quote-text-input').value.trim();
 
-  if (!quoteAuthor || !quoteText) {
-    alert("You must fill in all of the fields!");
-  } else {
-    var newQuoteCard = createQuoteCard(quoteAuthor, quoteText);
-    var quoteCardContainer = document.querySelector('.quote-card-container');
-    quoteCardContainer.insertAdjacentHTML("beforeend", newQuoteCard)
-    hideModal();
-  }
-}
-
-
-function showModal() {
-
-  var modal = document.getElementById('add-quote-modal');
-  var modalBackdrop = document.getElementById('modal-backdrop');
-
-  modal.classList.remove('hidden');
-  modalBackdrop.classList.remove('hidden');
-
-}
+//   if (!quoteAuthor || !quoteText) {
+//     alert("You must fill in all of the fields!");
+//   } else {
+//     var newQuoteCard = createQuoteCard(quoteAuthor, quoteText);
+//     var quoteCardContainer = document.querySelector('.quote-card-container');
+//     quoteCardContainer.insertAdjacentHTML("beforeend", newQuoteCard)
+//     hideModal();
+//   }
+// }
 
 
-function clearModalInputs() {
+// function showModal() {
 
-  var modalInputElements = document.querySelectorAll('#add-quote-modal input')
-  for (var i = 0; i < modalInputElements.length; i++) {
-    modalInputElements[i].value = '';
-  }
+//   var modal = document.getElementById('add-quote-modal');
+//   var modalBackdrop = document.getElementById('modal-backdrop');
 
-}
+//   modal.classList.remove('hidden');
+//   modalBackdrop.classList.remove('hidden');
+
+// }
 
 
-function hideModal() {
+// function clearModalInputs() {
 
-  var modal = document.getElementById('add-quote-modal');
-  var modalBackdrop = document.getElementById('modal-backdrop');
+//   var modalInputElements = document.querySelectorAll('#add-quote-modal input')
+//   for (var i = 0; i < modalInputElements.length; i++) {
+//     modalInputElements[i].value = '';
+//   }
 
-  modal.classList.add('hidden');
-  modalBackdrop.classList.add('hidden');
+// }
 
-  clearModalInputs();
 
-}
+// function hideModal() {
+
+//   var modal = document.getElementById('add-quote-modal');
+//   var modalBackdrop = document.getElementById('modal-backdrop');
+
+//   modal.classList.add('hidden');
+//   modalBackdrop.classList.add('hidden');
+
+//   clearModalInputs();
+
+// }
 
 function insertImage() {
     img = gemini.generateImage("Tomato");
