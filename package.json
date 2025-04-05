@@ -1,0 +1,26 @@
+{
+  "name": "foodfilter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abobich675/FoodFilter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/abobich675/FoodFilter/issues"
+  },
+  "homepage": "https://github.com/abobich675/FoodFilter#readme",
+  "dependencies": {
+    "@google/genai": "^0.7.0",
+    "express": "^5.1.0",
+    "serve": "^14.2.4"
+  }
+}
