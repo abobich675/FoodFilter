@@ -1,11 +1,11 @@
 # FoodFilter
 
-# Website
+***Recipes, no yap.***
+
+Simplify recipe websites by scraping the important information and cutting the excess. Utilizes Google's Gemini API to process and reformat recipe information, simplify recipes, and generate an image without the typical bloat found in commercialized recipe websites.
+
+## Website
 https://foodfilter.onrender.com/
-
-**Recipes, no yap.**
-
-Uses Google Gemini API to simplify recipes and generate an image of it in an a cleaner way than bloated recipe websites.
 
 ## How to Run It
 
@@ -18,4 +18,4 @@ Uses Google Gemini API to simplify recipes and generate an image of it in an a c
 3. Start the app:
    ```bash
    npm run start
-   
+*Oregon State Beaverhacks 2025 Submission*
