@@ -24,13 +24,20 @@ Created a simple frontend to display the stripped-down recipes
 
 The entire application follows a straightforward workflow: input a recipe URL, process the website text through Gemini API, and display only the essential cooking information.
 
-
-
 ## Website
 https://foodfilter.onrender.com/
 
-## How to Run It
+## Google Extension
+For easier use of FoodFilter, use the google chrome extension.
 
+### How to Set Up Google Extension:
+After cloning the repository, go to the chrome extensions page (chrome://extensions/). To set up and use the extension, you must use Developer Mode (To do this, click the Developer Mode switch in the top right). Then click the “Load unpacked” button in the top left and select the FoodFilter extension folder, “chrome-extension” (found in the Github). Pin the new extension for easy access.
+
+### How to Use the Google Extension
+Find a recipe you like online. From the recipe’s webpage, click on the pinned extension and click “Simplify.” This will take you to the FoodFilter webpage where you need only click “Go” and see your simplified recipe.
+
+
+## How to Run It
 1. Clone the repository:
    ```bash
    git clone <https://github.com/abobich675/FoodFilter.git>
