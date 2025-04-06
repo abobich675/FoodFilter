@@ -1,4 +1,7 @@
+import { generateImage } from '../../Gemini.js';
 export default function Results() {
+    generateImage("Tomato");
+
     return (
       <>
         <div id="header">
@@ -34,6 +37,7 @@ export default function Results() {
                         <li>blah blah</li>
                         <li>blah blah</li>  
                     </ul>
+                    <img src="gemini-native-image.png" alt="Generated Image" />
                 </div>
             </div>
         </div>

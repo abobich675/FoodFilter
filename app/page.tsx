@@ -1,7 +1,4 @@
-'use client';
 import Link from 'next/link'
-import { redirect } from 'next/navigation';
-import router from 'next/router';
 import React from 'react';
 
 export default function Home() {
