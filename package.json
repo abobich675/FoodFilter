@@ -3,5 +3,9 @@
     "@google/genai": "^0.7.0",
     "dotenv": "^16.4.7",
     "express": "^5.1.0"
+  },
+
+  "scripts": {
+    "start": "node server.js"
   }
 }

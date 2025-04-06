@@ -6,7 +6,7 @@ const path = require('path');
 
 dotenv.config();
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_GENAI_API_KEY });
 
@@ -18,6 +18,10 @@ app.get("/", function(req, res, next) {
     console.log("Request received")
     res.status(200).sendFile(__dirname + "/index.html")
 })
+
+app.get("/result", function(req, res) {
+    res.status(200).sendFile(__dirname + "/result.html");
+});
 
 //post endpoint for genai response
 app.post('/generate', async (req, res) => {
