@@ -3,7 +3,7 @@ import * as fs from "node:fs";
 
 export async function generateImage(prompt) {
 
-  const ai = new GoogleGenAI({ apiKey: "API_KEY" });
+  const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
   const contents = prompt;
 

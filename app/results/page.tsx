@@ -1,6 +1,6 @@
 import { generateImage } from '../../Gemini.js';
 export default function Results() {
-    generateImage("Tomato");
+    generateImage("Salad");
 
     return (
       <>
