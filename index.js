@@ -44,11 +44,6 @@ async function handleGoButtonClick() {
     localStorage.setItem('result', JSON.stringify(data));
     window.location.href = 'result.html'; //redirect to result page
 
-    /*
-    // this part only works if we have the 
-    const resultContainer = document.getElementById('result-container');
-    resultContainer.innerHTML = `<pre>${JSON.stringify(data.ingredients, null, 2)}</pre>`;
-    */
   } catch (error) {
     console.error(error);
     alert('An error occurred while fetching ingredients.');
@@ -59,9 +54,3 @@ window.addEventListener('DOMContentLoaded', function () {
   var goButton = document.getElementById('go-button');
   goButton.addEventListener('click', handleGoButtonClick);
 })
-
-//testing how an actual json array should show
-
-const testData = {
-  ingredients: ["1 cup of flour", "2 eggs", "1/2 cup of sugar", "1 tsp of baking powder"]
-}
