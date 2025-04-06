@@ -1,0 +1,11 @@
+{
+    "manifest_version": 3,
+    "name": "Food Filter",
+    "version": "1.0.0",
+    "description": "A chrome extension to simplify online recipes and reveal nutritional information.",
+    "permissions": ["activeTab", "scripting", "tabs"],
+    "action": { 
+        "default_popup": "popup.html",
+        "default_icon": "ff4.png"
+    }
+}
