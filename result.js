@@ -28,7 +28,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
     const ingredientsElem = document.querySelector('#ingredients ul');
-    const stepsElem = document.querySelector('#steps ul');
+    const stepsElem = document.querySelector('#steps ol');
     const nutritionElem = document.querySelector('#nutrients ul');
 
     //populate ingredients
