@@ -1,9 +1,10 @@
 const express = require('express');
 const { GoogleGenAI } = require('@google/genai');
 const dotenv = require('dotenv');
+const fs = require('fs');
+const path = require('path');
 
 dotenv.config();
-
 const app = express();
 const port = 3000;
 
@@ -18,15 +19,12 @@ app.get("/", function(req, res, next) {
     res.status(200).sendFile(__dirname + "/index.html")
 })
 
-
 //post endpoint for genai response
 app.post('/generate', async (req, res) => {
   const { url } = req.body;
-
   if (!url) {
     return res.status(400).send({ error: 'URL is required' });
   }
-
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-2.0-flash',
@@ -35,15 +33,63 @@ app.post('/generate', async (req, res) => {
     });
     console.log('Response from Google GenAI:', response.text);
     console.log(typeof response.text)
-
     //clean the triple backticks and "json" label from response
     var jsonString = response.text
         .replace(/```json/g, '')
         .replace(/```/g, '')
         .trim();
-
     console.log('Cleaned response:', jsonString);
-    res.send({jsonString});
+    
+    // Parse the JSON to extract recipe information
+    let recipeData;
+    try {
+      recipeData = JSON.parse(jsonString);
+    } catch (e) {
+      console.error('Error parsing JSON:', e);
+      recipeData = { ingredients: [], steps: [], nutrition: [] };
+    }
+    
+    // generate image prompt
+    const imagePrompt = `Can you create an image of a dish based off of this website? ${recipeData.ingredients.slice(0, 5).join(', ')}`;
+    
+    try {
+      // Make sure the public directory exists
+      const publicDir = path.join(__dirname, 'public');
+      if (!fs.existsSync(publicDir)) {
+        fs.mkdirSync(publicDir, { recursive: true });
+      }
+      
+      const imageResponse = await ai.models.generateContent({
+        model: "gemini-2.0-flash-exp-image-generation",
+        contents: imagePrompt,
+        config: {
+          responseModalities: ["Text", "Image"],
+        },
+      });
+      
+      let imagePath = '';
+      
+      for (const part of imageResponse.candidates[0].content.parts) {
+        if (part.inlineData) {
+          const imageData = part.inlineData.data;
+          const buffer = Buffer.from(imageData, "base64");
+          imagePath = "public/recipe-image.png";
+          fs.writeFileSync(imagePath, buffer);
+          console.log("Recipe image saved as recipe-image.png");
+        }
+      }
+      
+      res.send({
+        jsonString,
+        imageUrl: '/public/recipe-image.png'
+      });
+      
+    } catch (imageError) {
+      console.error('Error generating image:', imageError);
+      // Still return the recipe data even if image generation fails
+      res.send({ jsonString });
+    }
+    
   } catch (error) {
     console.error('Error generating content:', error);
     res.status(500).send({ error: 'Failed to generate content' });

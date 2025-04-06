@@ -12,11 +12,20 @@ function parseDataField(field) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    const dataString = localStorage.getItem('result'); // Retrieve the data from localStorage
+    const dataString = localStorage.getItem('result'); 
     if (!dataString) return;
 
     const data = JSON.parse(dataString);
     console.log('Data from localStorage:', data);
+
+    // display image 
+    if (data.imageUrl) {
+        const recipeImage = document.getElementById('recipe-image');
+        recipeImage.src = data.imageUrl;
+        document.getElementById('dish-image').style.display = 'block';
+    } else {
+        document.getElementById('dish-image').style.display = 'none';
+    }
     
     //parse the jsonString property if it exists
     const recipeData = data.jsonString ? JSON.parse(data.jsonString) : data;
