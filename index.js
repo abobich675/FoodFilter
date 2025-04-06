@@ -1,10 +1,17 @@
 function getURLInput() {
   var inputBox = document.getElementById('input');
   var url = inputBox.value;
-  if (url) {
-    return url;
-  } else {
+  if(!url){
     alert("Please enter a URL");
+    return null;
+  }
+
+  //check if url is valid
+  try{
+    new URL(url);
+    return url;
+  } catch{
+    alert("Please enter a valid URL");
     return null;
   }
 
@@ -12,6 +19,10 @@ function getURLInput() {
 
 async function handleGoButtonClick() {
   const url = getURLInput();
+
+  if (!url) {
+    return; // Exit if the URL is invalid or empty
+  }
 
   try {
     // Send the URL to the backend via a POST request
@@ -28,7 +39,11 @@ async function handleGoButtonClick() {
     }
 
     const data = await response.json();
-    console.log('Ingredients:', data.ingredients);
+    
+    //store data to localStorage
+    localStorage.setItem('result', JSON.stringify(data));
+    window.location.href = 'result.html'; //redirect to result page
+
     /*
     // this part only works if we have the 
     const resultContainer = document.getElementById('result-container');
@@ -44,3 +59,9 @@ window.addEventListener('DOMContentLoaded', function () {
   var goButton = document.getElementById('go-button');
   goButton.addEventListener('click', handleGoButtonClick);
 })
+
+//testing how an actual json array should show
+
+const testData = {
+  ingredients: ["1 cup of flour", "2 eggs", "1/2 cup of sugar", "1 tsp of baking powder"]
+}
