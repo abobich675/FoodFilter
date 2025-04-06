@@ -50,7 +50,19 @@ async function handleGoButtonClick() {
   }
 }
 
+// check for URL param 
+function checkForURLParam() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlParam = urlParams.get('url');
+  
+  if (urlParam) {
+    const inputBox = document.getElementById('input');
+    inputBox.value = decodeURIComponent(urlParam);
+  }
+}
+
 window.addEventListener('DOMContentLoaded', function () {
   var goButton = document.getElementById('go-button');
   goButton.addEventListener('click', handleGoButtonClick);
+  checkForURLParam();
 })
