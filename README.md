@@ -1,6 +1,7 @@
 # FoodFilter
 
 **Recipes, no yap.**
+
 Uses Google Gemini API to simplify recipes and generate an image of it in an a cleaner way than bloated recipe websites.
 
 ## How to Run It
