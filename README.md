@@ -2,7 +2,29 @@
 
 ***Recipes, no yap.***
 
-Simplify recipe websites by scraping the important information and cutting the excess. Utilizes Google's Gemini API to process and reformat recipe information, simplify recipes, and generate an image without the typical bloat found in commercialized recipe websites.
+## Inspiration
+Let's face it - recipe websites are the worst. What should be a simple list of ingredients and steps has become an endless scroll through life stories, popup ads, and SEO-stuffed paragraphs. Recipe Simplifier was born from the frustration of just wanting to know how much flour to use without having to read about someone's trip to Italy first.
+
+## What it does
+Recipe Simplifier transforms bloated recipe websites into clean, straightforward instructions. The application:
+1. Uses Google's Gemini API to scrape recipe websites for the essential information and reformat the content
+2. Calculates the nutritional facts of the recipe
+3. Generates a simplified recipe display with only the necessary information
+3. Uses Google's API to creates an AI-generated food image without requiring the original poster to supply a picture
+4. Provides a clean, ad-free interface to view recipes
+
+The end result is a streamlined cooking experience - no life stories, no excessive scrolling, just the recipe you need.
+
+## How We Built It
+Our team kept the tech stack simple and effective:
+
+Built a Node.js application using Express for the server-side functionality
+Integrated Google's Gemini API as the core AI component for processing recipe text and generating food images
+Created a simple frontend to display the stripped-down recipes
+
+The entire application follows a straightforward workflow: input a recipe URL, process the website text through Gemini API, and display only the essential cooking information.
+
+
 
 ## Website
 https://foodfilter.onrender.com/
