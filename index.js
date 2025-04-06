@@ -24,6 +24,9 @@ async function handleGoButtonClick() {
     return; // Exit if the URL is invalid or empty
   }
 
+  const loadingContainer = document.getElementById('loading-container');
+  loadingContainer.classList.add('active');
+
   try {
     // Send the URL to the backend via a POST request
     const response = await fetch('http://localhost:3000/generate', {
@@ -42,6 +45,7 @@ async function handleGoButtonClick() {
     
     //store data to localStorage
     localStorage.setItem('result', JSON.stringify(data));
+    loadingContainer.classList.remove('active');
     window.location.href = 'result.html'; //redirect to result page
 
   } catch (error) {
